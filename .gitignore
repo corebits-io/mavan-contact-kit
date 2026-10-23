@@ -1,0 +1,27 @@
+# Secrets — never commit
+.env
+.env.*
+!.env.example
+
+# Prospect data is real people's data. It does not belong in git.
+leads/*
+!leads/.gitkeep
+research/*
+!research/.gitkeep
+scratch/
+*.tmp
+
+# Your filled-in rubrics and override files may name real prospects.
+# The template and the example are safe and are committed.
+rubrics/*
+!rubrics/TEMPLATE.json
+!rubrics/EXAMPLE-*.json
+
+# Noise
+.DS_Store
+**/.DS_Store
+.vscode/
+.claude/settings.local.json
+__pycache__/
+*.pyc
+!rubrics/mavan.json

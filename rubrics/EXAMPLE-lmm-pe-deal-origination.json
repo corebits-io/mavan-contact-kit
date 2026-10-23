@@ -1,0 +1,80 @@
+{
+  "_note": [
+    "A REAL rubric from a shipped campaign, kept as a worked example. It is the exact",
+    "logic that used to be hardcoded in grade_pe_fit.py.",
+    "Read it to see the level of specificity a rubric needs. Note that the",
+    "disqualifier reasons explain the business logic ('secondaries buyers buy LP",
+    "interests, not companies') rather than just saying 'not a fit' — that is what",
+    "makes a graded list reviewable by someone who wasn't there when it was built.",
+    "Do not reuse this for a different offer. Copy TEMPLATE.json instead."
+  ],
+
+  "name": "lmm-pe-deal-origination",
+  "campaign": "Selling off-market owner origination to lower-middle-market PE firms and family offices doing control buyouts",
+
+  "columns": {
+    "title": "title",
+    "company": "company",
+    "account_description": "firm_what_they_do",
+    "account_size": "firm_employees",
+    "role_type": "role_type"
+  },
+
+  "grades": {
+    "A": "Dedicated BD / origination / deal-sourcing role at a qualifying firm. They own the problem and have budget language for it.",
+    "B": "Investment decision-maker (Partner / MD / Principal / Founder / CEO) at a qualifying firm with no dedicated BD desk — they source personally.",
+    "C": "Investment professional at a qualifying firm, but junior, or the firm already has a BD lead who is the better entry point.",
+    "D": "Wrong person at a right firm: operating partner, CFO/compliance, or an exec of a portfolio company rather than the investing firm.",
+    "E": "Wrong firm: not doing control/LMM buyouts (asset manager, VC, secondaries, single-sector fund), or the row has no ICP evidence."
+  },
+
+  "account_disqualifiers": [
+    {"match": "secondaries", "reason": "secondaries buyer — buys LP interests, not companies", "grade": "E"},
+    {"match": "lp partnership interests", "reason": "secondaries buyer — buys LP interests, not companies", "grade": "E"},
+    {"match": "venture capital", "reason": "venture-stage investor, not control buyouts", "grade": "E"},
+    {"match": "impact-focused venture", "reason": "venture-stage investor, not control buyouts", "grade": "E"},
+    {"match": "alternatives manager", "reason": "fund-of-funds / allocator, not a direct buyer", "grade": "E"},
+    {"match": "offering private markets", "reason": "fund-of-funds / allocator, not a direct buyer", "grade": "E"},
+    {"match": "global sport economy", "reason": "single-sector sports mandate, outside the ICP", "grade": "E"},
+    {"match": "sports economy", "reason": "single-sector sports mandate, outside the ICP", "grade": "E"},
+    {"match": "wine industry", "reason": "single-sector wine mandate — very narrow", "grade": "E"},
+    {"match": "mezzanine debt and junior equity", "reason": "junior-capital provider, backs sponsors rather than buying direct", "grade": "E"},
+    {"match": "real estate", "reason": "real-estate weighted mandate", "grade": "E"}
+  ],
+
+  "require_account_description": true,
+
+  "role_type_rules": {
+    "portfolio_co": {"grade": "D", "reason": "runs a portfolio company, not the investing firm"},
+    "back_office": {"grade": "D", "reason": "finance/compliance role, not deal sourcing"}
+  },
+
+  "wrong_person_titles": [
+    "operating partner", "operating executive", "executive advisor", "senior advisor",
+    "chief financial", "chief finance", "cfo", "compliance", "accounting",
+    "portfolio company operations", "operational improvement", "venture partner"
+  ],
+
+  "owner_titles": ["business development", "origination", "deal sourcing", "sourcing"],
+
+  "decision_titles": [
+    "managing partner", "manging partner", "managing director", "senior managing director",
+    "general partner", "principal", "founder", "chief executive", "ceo", "president",
+    "chief investment", "chairman", "owner", "managing member", "investment director",
+    "partner"
+  ],
+
+  "decision_title_exclusions": ["vice president"],
+
+  "junior_titles": ["vice president", "senior vice president", "associate", "analyst", "director"],
+
+  "small_account": {
+    "threshold": 20,
+    "note": "no dedicated BD desk at this size, so the partner sources personally"
+  },
+
+  "default": {
+    "grade": "C",
+    "reason": "investment role, entry point unclear"
+  }
+}

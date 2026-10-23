@@ -1,0 +1,172 @@
+{
+  "_how_to_use": [
+    "Mavan acquisition search rubric. Covers both groups in ICP.md.",
+    "Every list of titles is matched as a lowercase SUBSTRING of the title column.",
+    "First rule that matches wins: account_disqualifiers -> wrong_person_titles -> owner_titles",
+    "-> decision_titles -> junior_titles -> default.",
+    "Run `python3 skills/qualify-leads/grade_fit.py --explain --rubric rubrics/mavan.json --file research/<your file>.csv` to read it back."
+  ],
+  "name": "mavan-acquisition-search",
+  "campaign": "Confidential acquisition search: reach owner operators of US consumer and subscription companies (Group A) and sell side bankers and brokers in the lower middle market (Group B).",
+  "columns": {
+    "title": "title",
+    "company": "company",
+    "account_description": "what_they_do",
+    "account_size": "employees"
+  },
+  "grades": {
+    "A": "Group A: founder, owner, CEO or president of an independent US consumer or subscription company. Group B: managing director, partner or principal who runs sell side mandates at a lower middle market boutique.",
+    "B": "Right company, a decision maker who can route to the owner or the deal lead within one step.",
+    "C": "Right company, right function, but junior, or someone better is the entry point.",
+    "D": "Right company, wrong person: finance, marketing, operations, compliance or a portfolio company seat.",
+    "E": "Wrong company: sponsor owned, buy side only, a fund, a lender, a platform, or outside the United States."
+  },
+  "account_disqualifiers": [
+    {
+      "match": "portfolio company of",
+      "reason": "owned by a sponsor, not an independent seller",
+      "grade": "E"
+    },
+    {
+      "match": "a subsidiary of",
+      "reason": "owned by a parent company, not an independent seller",
+      "grade": "E"
+    },
+    {
+      "match": "acquired by",
+      "reason": "already sold",
+      "grade": "E"
+    },
+    {
+      "match": "private equity fund",
+      "reason": "a buyer, not a seller's adviser",
+      "grade": "E"
+    },
+    {
+      "match": "private equity firm",
+      "reason": "a buyer, not a seller's adviser",
+      "grade": "E"
+    },
+    {
+      "match": "family office",
+      "reason": "a buyer, not a seller's adviser",
+      "grade": "E"
+    },
+    {
+      "match": "search fund",
+      "reason": "a buyer, not a seller's adviser",
+      "grade": "E"
+    },
+    {
+      "match": "venture capital",
+      "reason": "venture investor, outside both groups",
+      "grade": "E"
+    },
+    {
+      "match": "buy-side",
+      "reason": "buy side only adviser, does not bring sellers to market",
+      "grade": "E"
+    },
+    {
+      "match": "buy side",
+      "reason": "buy side only adviser, does not bring sellers to market",
+      "grade": "E"
+    },
+    {
+      "match": "deal sourcing",
+      "reason": "deal sourcing service for buyers, not a sell side adviser",
+      "grade": "E"
+    },
+    {
+      "match": "lender",
+      "reason": "lender, not an adviser",
+      "grade": "E"
+    },
+    {
+      "match": "sba 7(a)",
+      "reason": "debt adviser, not a sell side adviser",
+      "grade": "E"
+    },
+    {
+      "match": "esop",
+      "reason": "employee ownership specialist, outside the mandate",
+      "grade": "E"
+    },
+    {
+      "match": "recruit",
+      "reason": "recruiter, not a deal adviser",
+      "grade": "E"
+    },
+    {
+      "match": "marketplace for",
+      "reason": "listing platform, not an adviser",
+      "grade": "E"
+    }
+  ],
+  "require_account_description": false,
+  "_require_account_description": "false because a row found through find-people has no description column yet. Set true once research-list has run.",
+  "wrong_person_titles": [
+    "chief financial",
+    "cfo",
+    "controller",
+    "compliance",
+    "accounting",
+    "chief marketing",
+    "cmo",
+    "marketing",
+    "growth",
+    "chief operating",
+    "coo",
+    "operations",
+    "supply chain",
+    "human resources",
+    "people",
+    "talent",
+    "operating partner",
+    "senior advisor",
+    "advisor"
+  ],
+  "owner_titles": [
+    "founder",
+    "co-founder",
+    "cofounder",
+    "owner",
+    "chief executive",
+    "ceo",
+    "managing partner",
+    "managing director",
+    "senior managing director",
+    "principal",
+    "head of consumer",
+    "consumer practice",
+    "partner"
+  ],
+  "decision_titles": [
+    "president",
+    "chairman",
+    "general partner",
+    "managing member"
+  ],
+  "decision_title_exclusions": [
+    "vice president",
+    "assistant to"
+  ],
+  "_decision_title_exclusions": "Stops 'vice president' from matching the 'president' substring. Keep it.",
+  "junior_titles": [
+    "vice president",
+    "senior vice president",
+    "associate",
+    "analyst",
+    "director",
+    "coordinator",
+    "manager"
+  ],
+  "small_account": {
+    "threshold": 20,
+    "note": "small enough that the founder or managing partner handles this personally"
+  },
+  "default": {
+    "grade": "C",
+    "reason": "in scope, but the entry point is unclear from the title alone"
+  }
+}

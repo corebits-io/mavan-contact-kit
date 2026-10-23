@@ -1,0 +1,6 @@
+{
+  "name": "prospect-data-kit",
+  "description": "Build, research, enrich and qualify a B2B prospect list. Produces a graded CSV with verified contact data. Sends nothing.",
+  "version": "1.0.0",
+  "author": { "name": "corebits" }
+}

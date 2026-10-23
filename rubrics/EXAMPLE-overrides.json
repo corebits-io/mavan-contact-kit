@@ -1,0 +1,48 @@
+{
+  "_comment": [
+    "Synthetic example of an overrides file. Copy the shape, not the content.",
+    "Keys under 'contacts' are row keys: the contact_id column if your list has one,",
+    "else row<N> by zero-based input order.",
+    "The point of this file is that every human judgement call is written down with a",
+    "reason, so it stays reviewable. Never hand-edit a grade in the CSV instead."
+  ],
+
+  "ok_rebrand": {
+    "note": "the company was renamed; the row is correct as filed",
+    "clears_employer_check": true,
+    "contacts": {
+      "row12": "Northgate Street Capital rebranded to Parkway Capital in 2024 — same firm, same person"
+    }
+  },
+
+  "dual_role": {
+    "note": "legitimately holds two roles, so the employer mismatch is expected",
+    "clears_employer_check": true,
+    "contacts": {
+      "row31": "listed at both the fund and its operating arm; the fund seat is the right one for this campaign"
+    }
+  },
+
+  "wrong_arm": {
+    "grade": "D",
+    "note": "sits in a different arm of the same brand than the one we target",
+    "contacts": {
+      "row58": "profile shows the public-markets arm, not the buyout arm"
+    }
+  },
+
+  "left_company": {
+    "grade": "E",
+    "note": "no longer at the company we filed them under",
+    "contacts": {
+      "row40": "profile shows they moved to an operating role at a portfolio company in 2025"
+    }
+  },
+
+  "unverifiable": {
+    "note": "no profile data available, so the automated grade is unconfirmed — treat with caution",
+    "contacts": {
+      "row77": "profile scrape returned empty; grade is from the title alone"
+    }
+  }
+}
