@@ -7,7 +7,7 @@
     "Run `python3 skills/qualify-leads/grade_fit.py --explain --rubric rubrics/mavan.json --file research/<your file>.csv` to read it back."
   ],
   "name": "mavan-acquisition-search",
-  "campaign": "Confidential acquisition search: reach owner operators of US consumer and subscription companies (Group A) and sell side bankers and brokers in the lower middle market (Group B).",
+  "campaign": "Reach owner operators of US consumer and subscription companies (Group A) and sell side bankers and brokers in the lower middle market (Group B).",
   "columns": {
     "title": "title",
     "company": "company",

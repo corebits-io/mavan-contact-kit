@@ -3,7 +3,7 @@
 Read by `build-list`, `find-people` and `qualify-leads`. Edit it when the target changes.
 
 ## The offer
-Mavan is running a confidential acquisition search. This list exists so the deal team can reach two kinds of people: owners who might sell, and the advisers who bring companies to market. Nothing in this kit writes to them.
+This list exists so the deal team can reach two kinds of people: owners who might sell, and the advisers who bring companies to market. Nothing in this kit writes to them.
 
 ## Group A: owner operators of US consumer and subscription companies
 - **Industry:** consumer products and subscription businesses sold direct to consumers. Supplements, food and drink, beauty and personal care, pet, apparel, membership boxes, subscription services.
