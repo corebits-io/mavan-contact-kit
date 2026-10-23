@@ -1,21 +1,21 @@
-# Prospect Data Kit
+# Mavan contact kit
 
 Four Claude Code skills that take you from an ICP to a graded, contactable prospect list:
 
 ```
 build-list  →  research-list  →  enrich-contacts  →  qualify-leads
-   (who)         (facts)          (email/phone)        (fit A–E)
+   (who)         (facts)          (email/phone)        (fit A to E)
 ```
 
-**This kit does not send anything.** No LinkedIn account, no email account, no outreach copy. Its only output is a CSV. That is deliberate — you can run all of it without any risk of a message going out in someone's name.
+**This kit does not send anything.** No LinkedIn account, no email account, no outreach copy. Its only output is a CSV. That is deliberate. You can run all of it without any risk of a message going out in someone's name.
 
 ---
 
 ## Setup (5 minutes)
 
 ```bash
-git clone <this repo>
-cd prospect-data-kit
+git clone https://github.com/corebits-io/mavan-contact-kit.git
+cd mavan-contact-kit
 cp .env.example .env        # then fill in your own API keys
 python3 --version           # 3.8+; no pip installs needed
 ```
@@ -28,7 +28,7 @@ Then open the folder in Claude Code. The skills register on restart.
 
 **B. Install as a plugin** and work in your own project:
 ```
-/plugin marketplace add <this-repo-url>
+/plugin marketplace add corebits-io/mavan-contact-kit
 /plugin install prospect-data-kit
 ```
 The scripts find your `.env` by walking up from your working directory, so they work either way. Override with `--project /path` or `$PDK_PROJECT` if needed.
@@ -40,7 +40,7 @@ The scripts find your `.env` by walking up from your working directory, so they 
 | Skill | Needs | Cost |
 |---|---|---|
 | `build-list` | Clay connector **or** `APIFY_API_TOKEN` | Apify: pay per run, always capped |
-| `research-list` | nothing — free web search | free |
+| `research-list` | nothing, free web search | free |
 | `enrich-contacts` | `PROSPEO_API_KEY`, `BETTERCONTACT_API_KEY`, `BOUNCER_API_KEY`, `APIFY_API_TOKEN` | ~real money per row |
 | `qualify-leads` | a rubric in `rubrics/` | free |
 
@@ -81,7 +81,7 @@ Every script takes `--help`.
 2. **Two finders, then a verifier.** One source is an address with no way to judge it. Never send to an address that hasn't been verified.
 3. **`risky` is not a pass.** It means a catch-all domain accepted the probe. It proves nothing about that mailbox.
 4. **Test on 5 rows before running the list.** Every enrichment row costs credits, and a bad column mapping burns all of them.
-5. **Research is factual. Messaging is not this kit's job.** No hooks, no openers, no draft copy — that happens later, in the sender's own voice.
+5. **Research is factual. Messaging is not this kit's job.** No hooks, no openers, no draft copy. That happens later, in the sender's own voice.
 
 Full operating instructions in [CLAUDE.md](CLAUDE.md). Detailed procedures in [playbooks/](playbooks/).
 
@@ -92,13 +92,13 @@ Full operating instructions in [CLAUDE.md](CLAUDE.md). Detailed procedures in [p
 ```
 skills/            the four skills (SKILL.md + scripts)
 playbooks/         the detailed procedure behind each skill
-rubrics/           fit rubrics — TEMPLATE.json plus a real worked example
+rubrics/           fit rubrics: TEMPLATE.json plus a real worked example
 examples/          campaign-specific scripts kept as reference patterns, not for reuse
 ICP.md             fill this in: who you're targeting and who to exclude
 leads/             your input lists      (gitignored)
 research/          output               (gitignored)
 scratch/           intermediate JSON     (gitignored)
-.env               your API keys         (gitignored — never commit)
+.env               your API keys         (gitignored, never commit)
 ```
 
 ---
